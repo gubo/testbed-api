@@ -1,0 +1,98 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "testbed",
+    "version" : "100",
+    "description" : "TESTBED REST API",
+    "contact" : {
+      "name" : "jeff schulz",
+      "email" : "developer@gubo.com"
+    }
+  },
+  "host" : "tic1h3yg17.execute-api.us-west-2.amazonaws.com",
+  "basePath" : "/dev",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/testbed/v1/analytics" : {
+      "post" : {
+        "tags" : [ "analytics" ],
+        "description" : "REST method for validation and routing of analytics data.",
+        "operationId" : "addAnalysis",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Analysis object",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#definitions/Analysis"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/testbed/v1/status" : {
+      "get" : {
+        "tags" : [ "status" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Analysis" : {
+      "type" : "object",
+      "properties" : {
+        "movieID" : {
+          "type" : "string"
+        },
+        "viewerID" : {
+          "type" : "string"
+        },
+        "tokenKey" : {
+          "type" : "string"
+        },
+        "event" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Result" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "integer"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "movieID" : {
+          "type" : "string"
+        },
+        "viewerID" : {
+          "type" : "string"
+        },
+        "event" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Empty" : {
+      "type" : "object"
+    }
+  }
+}
